@@ -38,8 +38,24 @@ window.AVENTURIAN_PROFILE_DATA = {
   regionalSpecials: {
     andergast: ["Trägt einen kleinen Anhänger aus Steineichenholz.", "Kennt eine alte Geschichte über den Steineichenwald.", "Kann Spuren von Waldtieren ungewöhnlich sicher lesen."],
     mittelreich: ["Trägt eine abgegriffene Münze mit dem Bild eines früheren Kaisers.", "Kennt einen Nebenweg durch die Gassen Gareths.", "Hat entfernte Verwandtschaft in einer Reichsbehörde."],
+    mittelreich_albernia: ["Trägt ein Band in den Farben eines albernischen Hauses.", "Kennt eine Geschichte über Feen am Großen Fluss.", "Wechselt im Zorn unbewusst in einen albernischen Dialekt."],
+    mittelreich_almada: ["Erkennt guten Yaquirwein schon am Duft.", "Beherrscht einen temperamentvollen almadanischen Tanz.", "Trägt eine alte Familienfehde mit ausgesuchter Höflichkeit aus."],
+    mittelreich_garetien: ["Trägt eine abgegriffene Münze mit dem Bild eines früheren Kaisers.", "Kennt einen Nebenweg durch die Gassen Gareths.", "Hat entfernte Verwandtschaft in einer Reichsbehörde."],
+    mittelreich_greifenfurt: ["Bewahrt eine Kerbe für jeden überstandenen Orkangriff am Gürtel.", "Kennt die alten Wachtwege am Finsterkamm.", "Trägt einen kleinen Greifenanhänger aus Messing."],
+    mittelreich_kosch: ["Kann mehrere Biersorten am Geruch unterscheiden.", "Kennt ein altes Lied über Angbar.", "Schätzt zwergische Handwerkskunst besonders hoch."],
+    mittelreich_nordmarken: ["Führt Herkunft und Verpflichtungen außerordentlich genau Buch.", "Kennt die Strömungen des Großen Flusses.", "Trägt ein ordentlich versiegeltes Empfehlungsschreiben aus Elenvina."],
+    mittelreich_perricum: ["Verehrt eine alte nebachotische Familientradition.", "Kennt die Zeichen wechselnden Wetters am Golf von Perricum.", "Trägt ein kleines Amulett mit Löwenmotiv."],
+    mittelreich_rabenmark: ["Spricht bei Sonnenuntergang ein kurzes Borongebet.", "Kennt die Lage eines verlassenen Golgaritenpostens.", "Bewahrt einen schwarzen Federkiel als Glücksbringer auf."],
+    mittelreich_rommilyser_mark: ["Bietet selbst Fremden zuerst einen Platz am Herd an.", "Kennt ein altes Travialied aus Darpatien.", "Trägt einen geschnitzten Gänsekopf am Wanderstab."],
+    mittelreich_sonnenmark: ["Misstraut offen gewirkter Magie aus alter Gewohnheit.", "Trägt ein Sonnensymbol unter der Kleidung.", "Kennt eine Geschichte über den Widerstand Beilunks."],
+    mittelreich_tobrien: ["Kann von mehreren verlorenen Dörfern Tobriens erzählen.", "Trägt einen Wolfzahn als Andenken an die Heimat.", "Kennt sich mit langen, kalten Wintern aus."],
+    mittelreich_warunk: ["Reagiert auf das Klappern von Knochen mit sichtbarer Anspannung.", "Kennt einen sicheren Weg durch die Umgebung Warunks.", "Trägt ein rondragefälliges Erinnerungsband."],
+    mittelreich_weiden: ["Kennt eine alte Rittersage aus Weiden.", "Spricht über Orks mit auffallend knapper Verachtung.", "Hat schon einmal ein seltsames Licht am Pandlaril gesehen."],
+    mittelreich_windhag: ["Nennt die eigene Sippe noch vor dem Heimatort.", "Kennt einen verborgenen Pass durch die Windhagberge.", "Trägt einen glatt geschliffenen Stein von der Küste."],
     horasreich: ["Besitzt eine Einladung zu einem Vinsalter Salon.", "Erkennt mehrere seltene Weine am Geruch.", "Kennt hinter den Kulissen eines Theaters erstaunlich viele Leute."],
-    thorwal: ["Trägt ein Stück geschnitztes Walbein als Glücksbringer.", "Kennt die Strophen einer fast vergessenen Saga.", "Kann ein Schiff schon am Klang seiner Takelage erkennen."]
+    thorwal: ["Trägt ein Stück geschnitztes Walbein als Glücksbringer.", "Kennt die Strophen einer fast vergessenen Saga.", "Kann ein Schiff schon am Klang seiner Takelage erkennen."],
+    tulamiden: ["Kennt die Bedeutung zahlreicher tulamidischer Ehrennamen.", "Trägt ein Fläschchen mit stark duftendem Rosenöl.", "Kann eine Geschichte über die Kophtanim erzählen."],
+    kalifat: ["Kennt mehrere Rastplätze und Wasserstellen in der Khôm.", "Trägt ein sorgfältig gepflegtes Tuch gegen Wüstensand.", "Kann die Abstammung der eigenen Sippe über viele Generationen aufzählen."]
   },
   speciesSpecials: {
     achaz: ["Erinnert sich genau an den Tag der sechsten Häutung.", "Trägt eine Schuppe mit eingeritzten Zeichen bei sich."],

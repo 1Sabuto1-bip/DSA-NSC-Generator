@@ -47,6 +47,16 @@ const speciesRules = {
       simple: "Selbst einfache Leute im Horasreich tragen häufig zwei wohlklingende Vornamen und einen Familiennamen.",
       respected: "Bürgerliche Familien schmücken ihren Namen gern mit Zusätzen wie da, de, di, della oder ter.",
       upper: "Bei Adel und Gelehrten treten lange Vornamensfolgen sowie traditionelle Prädikate und Familiennamen besonders häufig auf."
+    },
+    tulamiden: {
+      simple: "Tulamiden nennen nach dem Vornamen meist den Vater: Männer mit „ibn“, Frauen mit „saba“ oder einer Endung wie -sunni beziehungsweise -sunya.",
+      respected: "Gelehrte und Zauberkundige können zusätzlich ihre Lehrmeisterin oder ihren Lehrmeister mit „sdla“ beziehungsweise „sal“ nennen; Familiennamen sind selten.",
+      upper: "Eine herausgehobene Person kann einen Ehrennamen mit al', el', abu'l, bint el' oder umm el' führen."
+    },
+    kalifat: {
+      simple: "Novadis verwenden für Söhne gewöhnlich „ben“ statt „ibn“. Töchter führen meist einen Vaternamen; bei einem nicht rastullahgläubigen Vater kann der Muttername mit „bint el'“ erscheinen.",
+      respected: "Zu Abstammungsnamen können Lehrmeister- oder seltene Familiennamen treten.",
+      upper: "Ein Ehrenname hebt Rang, Ruf oder eine besondere Eigenschaft hervor und ergänzt die novadische Abstammungsform."
     }
   },
   achaz: "Achaznamen unterscheiden nicht nach Geschlecht. Ein zusätzlicher Herkunfts- oder Gelegenamen kann genannt werden, ist aber kein Familienname.",
@@ -91,7 +101,19 @@ const buildHumanName = (variant, gender, status) => {
     }
     return { name: `${first} ${familyName} ${community}`, construction: "Vorname + Elternname + Ottajasko" };
   }
-  if (variant === "mittelreich") {
+  if (region.style === "albernia") {
+    if (status === "simple" && region.origins?.length && randomIndex(2) === 0) return { name: `${first} ${pick(region.origins)}`, construction: "Vorname + Herkunftsbezeichnung" };
+    if (status === "upper") return { name: `${first} ${gender === "female" ? "ni" : "ui"} ${pick(region.noble)}`, construction: "Vorname + albernischer Hausname" };
+    return { name: `${first} ${pick(region.family)}`, construction: "Vorname + Familienname" };
+  }
+  if (region.style === "almada") {
+    let second = pick(region[gender]);
+    if (second === first) second = pick(region[gender]);
+    if (status === "simple") return { name: `${first} ${second} ${pick(region.family)}`, construction: "zwei Vornamen + Familienname" };
+    if (status === "respected") return { name: `${first} ${second} ${pick(region.prefixes)} ${pick(region.family)}`, construction: "zwei Vornamen + Namensprädikat" };
+    return { name: `${first} ${second} ${pick(region.noble)}`, construction: "zwei Vornamen + Adelsname" };
+  }
+  if (region.style === "mittelreich") {
     if (status === "simple" && randomIndex(2) === 0) return { name: `${first} ${pick(region.origins)}`, construction: "Vorname + Herkunftsbezeichnung" };
     if (status === "upper") {
       const second = pick(region[gender]);
@@ -99,7 +121,9 @@ const buildHumanName = (variant, gender, status) => {
       const predicate = /^(vom|von |zu |zur )/i.test(noble) ? noble : `von ${noble}`;
       return { name: `${first} ${second} ${predicate}`, construction: "zwei Vornamen + Adelsname" };
     }
-    return { name: `${first} ${pick(region.family)}`, construction: "Vorname + Familienname" };
+    const family = pick(region.family);
+    if (region.clans?.length && status === "respected" && randomIndex(3) === 0) return { name: `${first} ${family} aus ${pick(region.clans)}s Sippe`, construction: "Vorname + Familie + Windhager Sippe" };
+    return { name: `${first} ${family}`, construction: "Vorname + Familienname" };
   }
   if (variant === "horasreich") {
     let second = pick(region[gender]);
@@ -108,6 +132,20 @@ const buildHumanName = (variant, gender, status) => {
     if (status === "respected") return { name: `${first} ${second} ${pick(region.prefixes)} ${pick(region.family)}`, construction: "zwei Vornamen + bürgerliches Namensprädikat" };
     return { name: `${first} ${second} ${pick(region.noble)}`, construction: "zwei Vornamen + gehobener Familienname" };
   }
+  if (region.style === "tulamiden" || region.style === "kalifat") {
+    const parent = pick(region.male);
+    let ancestry;
+    if (gender === "male") ancestry = `${region.style === "kalifat" ? "ben" : "ibn"} ${parent}`;
+    else if (region.style === "kalifat" && randomIndex(5) === 0) ancestry = `bint el'${pick(region.female)}`;
+    else if (randomIndex(2) === 0) ancestry = `saba ${parent}`;
+    else ancestry = `${parent}${randomIndex(2) === 0 ? "sunni" : "sunya"}`;
+    if (status === "simple") return { name: `${first} ${ancestry}`, construction: "Vorname + Abstammungsname" };
+    if (status === "respected") {
+      if (randomIndex(2) === 0) return { name: `${first} ${ancestry} ${gender === "female" ? "sdla" : "sal"} ${pick(region.male)}`, construction: "Vorname + Abstammung + Lehrmeistername" };
+      return { name: `${first} ${ancestry} ${pick(region.families)}`, construction: "Vorname + Abstammung + seltener Familienname" };
+    }
+    return { name: `${first} ${pick(region.honorifics)} ${ancestry}`, construction: "Vorname + Ehrenname + Abstammung" };
+  }
   return { name: first, construction: "Vorname" };
 };
 
@@ -115,7 +153,7 @@ const buildProfile = (species, variantKey, status) => {
   const appearance = `${pick(profileData.age)}, ${pick(profileData.build[species])}; ${pick(profileData.clothing[status])}.`;
   const trait = pick(profileData.traits);
   const contextual = species === "human"
-    ? profileData.regionalSpecials[variantKey] || []
+    ? profileData.regionalSpecials[variantKey] || profileData.regionalSpecials[humanData[variantKey]?.style] || []
     : profileData.speciesSpecials[species] || [];
   const special = pick([...profileData.specials, ...contextual, ...contextual]);
   return { appearance, trait, special };
@@ -189,7 +227,8 @@ const updateRule = () => {
   const species = speciesData[speciesKey];
   const variant = species.variants[variantKey];
   ruleTitle.textContent = `${species.label} · ${variant.label}`;
-  ruleDescription.textContent = speciesKey === "human" ? speciesRules.human[variantKey][statusSelect.value] : speciesRules[speciesKey];
+  const ruleKey = variant.rule || variantKey;
+  ruleDescription.textContent = speciesKey === "human" ? speciesRules.human[ruleKey][statusSelect.value] : speciesRules[speciesKey];
 };
 
 const fitGeneratedName = () => {

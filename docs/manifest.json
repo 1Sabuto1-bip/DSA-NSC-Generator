@@ -1,15 +1,15 @@
 {
   "name": "Aventurischer NSC-Namensgenerator",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "manifest_version": 1,
   "description": "Regionale DSA-Namen für Menschen und andere Spezies erzeugen",
-  "icon": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/icon.svg?v=030",
+  "icon": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/icon.svg?v=040",
   "author": "Alexander Hoffmann",
-  "homepage_url": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/?v=030",
+  "homepage_url": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/?v=040",
   "action": {
     "title": "NSC-Namen",
-    "icon": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/icon.svg?v=030",
-    "popover": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/?v=030",
+    "icon": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/icon.svg?v=040",
+    "popover": "https://1sabuto1-bip.github.io/DSA-NSC-Generator/?v=040",
     "height": 900,
     "width": 1000
   },

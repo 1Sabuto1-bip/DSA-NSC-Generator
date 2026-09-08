@@ -35,10 +35,25 @@ const dwarfMale = ["Adamantosch", "Agam", "Albrax", "Ambrosch", "Andrasch", "Ang
 window.AVENTURIAN_SPECIES_DATA = {
   human: {
     label: "Mensch", variantLabel: "Region", variants: {
-      andergast: { label: "Andergast" },
-      mittelreich: { label: "Mittelreich" },
-      horasreich: { label: "Horasreich" },
-      thorwal: { label: "Thorwal" }
+      andergast: { label: "Andergast", rule: "andergast" },
+      mittelreich_albernia: { label: "Mittelreich · Albernia", rule: "mittelreich" },
+      mittelreich_almada: { label: "Mittelreich · Almada", rule: "mittelreich" },
+      mittelreich_garetien: { label: "Mittelreich · Garetien", rule: "mittelreich" },
+      mittelreich_greifenfurt: { label: "Mittelreich · Greifenfurt", rule: "mittelreich" },
+      mittelreich_kosch: { label: "Mittelreich · Kosch", rule: "mittelreich" },
+      mittelreich_nordmarken: { label: "Mittelreich · Nordmarken", rule: "mittelreich" },
+      mittelreich_perricum: { label: "Mittelreich · Perricum", rule: "mittelreich" },
+      mittelreich_rabenmark: { label: "Mittelreich · Rabenmark", rule: "mittelreich" },
+      mittelreich_rommilyser_mark: { label: "Mittelreich · Rommilyser Mark", rule: "mittelreich" },
+      mittelreich_sonnenmark: { label: "Mittelreich · Sonnenmark", rule: "mittelreich" },
+      mittelreich_tobrien: { label: "Mittelreich · Tobrien", rule: "mittelreich" },
+      mittelreich_warunk: { label: "Mittelreich · Warunk", rule: "mittelreich" },
+      mittelreich_weiden: { label: "Mittelreich · Weiden", rule: "mittelreich" },
+      mittelreich_windhag: { label: "Mittelreich · Windhag", rule: "mittelreich" },
+      horasreich: { label: "Horasreich", rule: "horasreich" },
+      kalifat: { label: "Kalifat · Novadis", rule: "kalifat" },
+      thorwal: { label: "Thorwal", rule: "thorwal" },
+      tulamidenlande: { label: "Tulamidenlande", rule: "tulamiden" }
     }
   },
   achaz: {
