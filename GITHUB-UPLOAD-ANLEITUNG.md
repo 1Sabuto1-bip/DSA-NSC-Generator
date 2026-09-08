@@ -18,12 +18,12 @@ Lade `README.md`, `GITHUB-UPLOAD-ANLEITUNG.md` und den vollständigen Ordner `do
 
 Die Webseite ist anschließend unter dieser Adresse erreichbar:
 
-`https://1sabuto1-bip.github.io/DSA-NSC-Generator/?v=020`
+`https://1sabuto1-bip.github.io/DSA-NSC-Generator/?v=030`
 
 ## 4. In Owlbear Rodeo installieren
 
 Füge in Owlbear Rodeo diese Manifest-Adresse als Erweiterung hinzu:
 
-`https://1sabuto1-bip.github.io/DSA-NSC-Generator/manifest.json?v=020`
+`https://1sabuto1-bip.github.io/DSA-NSC-Generator/manifest.json?v=030`
 
 Der Generator öffnet sich danach über das Symbol **NSC-Namen**. Im Owlbear-Popover wird automatisch die kompakte eingebettete Darstellung verwendet.

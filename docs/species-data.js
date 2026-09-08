@@ -35,7 +35,10 @@ const dwarfMale = ["Adamantosch", "Agam", "Albrax", "Ambrosch", "Andrasch", "Ang
 window.AVENTURIAN_SPECIES_DATA = {
   human: {
     label: "Mensch", variantLabel: "Region", variants: {
-      andergast: { label: "Andergast" }, thorwal: { label: "Thorwal" }
+      andergast: { label: "Andergast" },
+      mittelreich: { label: "Mittelreich" },
+      horasreich: { label: "Horasreich" },
+      thorwal: { label: "Thorwal" }
     }
   },
   achaz: {

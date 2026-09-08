@@ -1,5 +1,6 @@
 const humanData = window.AVENTURIAN_NAME_DATA;
 const speciesData = window.AVENTURIAN_SPECIES_DATA;
+const profileData = window.AVENTURIAN_PROFILE_DATA;
 
 if (window.self !== window.top) document.body.classList.add("is-embedded");
 
@@ -14,6 +15,9 @@ const generatedMeta = document.querySelector("#generated-meta");
 const constructionNote = document.querySelector("#construction-note");
 const ruleTitle = document.querySelector("#rule-title");
 const ruleDescription = document.querySelector("#rule-description");
+const profileAppearance = document.querySelector("#profile-appearance");
+const profileTrait = document.querySelector("#profile-trait");
+const profileSpecial = document.querySelector("#profile-special");
 const toast = document.querySelector(".toast");
 
 const statusLabels = {
@@ -33,6 +37,16 @@ const speciesRules = {
       simple: "Der zweite Namensteil verweist auf Mutter oder Vater. Frauen erhalten die Endung -dottir, Männer die Endung -son.",
       respected: "Zum Elternnamen tritt die Zugehörigkeit zu einer Ottajasko, einer Dorf- oder Schiffsgemeinschaft.",
       upper: "Thorwal kennt keinen Adel nach mittelreichischem Vorbild. Eine herausgehobene Person trägt einen Ehrennamen und nennt ihre Ottajasko."
+    },
+    mittelreich: {
+      simple: "Im Mittelreich sind ein Vorname mit einfachem Familiennamen oder eine Herkunftsbezeichnung die verbreitetste Form.",
+      respected: "Angesehene Bürgerinnen und Bürger führen gewöhnlich einen festen Familiennamen.",
+      upper: "Der Adel verwendet häufig klangvolle Vornamen und einen mit „von“ verbundenen Haus- oder Lehensnamen."
+    },
+    horasreich: {
+      simple: "Selbst einfache Leute im Horasreich tragen häufig zwei wohlklingende Vornamen und einen Familiennamen.",
+      respected: "Bürgerliche Familien schmücken ihren Namen gern mit Zusätzen wie da, de, di, della oder ter.",
+      upper: "Bei Adel und Gelehrten treten lange Vornamensfolgen sowie traditionelle Prädikate und Familiennamen besonders häufig auf."
     }
   },
   achaz: "Achaznamen unterscheiden nicht nach Geschlecht. Ein zusätzlicher Herkunfts- oder Gelegenamen kann genannt werden, ist aber kein Familienname.",
@@ -65,16 +79,46 @@ const buildHumanName = (variant, gender, status) => {
     if (status === "upper") return { name: `${first} von ${pick(region.noble)}`, construction: "Vorname + Adelsname" };
     return { name: `${first} ${pick(region.family)}`, construction: "Vorname + Familienname" };
   }
-  const parentGender = randomIndex(2) ? "female" : "male";
-  const parent = possessive(pick(region[parentGender]));
-  const familyName = `${parent}${gender === "female" ? "dottir" : "son"}`;
-  if (status === "simple") return { name: `${first} ${familyName}`, construction: "Vorname + Elternname" };
-  const community = `von der ${pick(region.ottajasko)}-Ottajasko`;
-  if (status === "upper") {
-    const epithet = pick(gender === "female" ? region.femaleEpithets : region.maleEpithets);
-    return { name: `${first} „${epithet}“ ${familyName} ${community}`, construction: "Vorname + Ehrenname + Elternname + Ottajasko" };
+  if (variant === "thorwal") {
+    const parentGender = randomIndex(2) ? "female" : "male";
+    const parent = possessive(pick(region[parentGender]));
+    const familyName = `${parent}${gender === "female" ? "dottir" : "son"}`;
+    if (status === "simple") return { name: `${first} ${familyName}`, construction: "Vorname + Elternname" };
+    const community = `von der ${pick(region.ottajasko)}-Ottajasko`;
+    if (status === "upper") {
+      const epithet = pick(gender === "female" ? region.femaleEpithets : region.maleEpithets);
+      return { name: `${first} „${epithet}“ ${familyName} ${community}`, construction: "Vorname + Ehrenname + Elternname + Ottajasko" };
+    }
+    return { name: `${first} ${familyName} ${community}`, construction: "Vorname + Elternname + Ottajasko" };
   }
-  return { name: `${first} ${familyName} ${community}`, construction: "Vorname + Elternname + Ottajasko" };
+  if (variant === "mittelreich") {
+    if (status === "simple" && randomIndex(2) === 0) return { name: `${first} ${pick(region.origins)}`, construction: "Vorname + Herkunftsbezeichnung" };
+    if (status === "upper") {
+      const second = pick(region[gender]);
+      const noble = pick(region.noble);
+      const predicate = /^(vom|von |zu |zur )/i.test(noble) ? noble : `von ${noble}`;
+      return { name: `${first} ${second} ${predicate}`, construction: "zwei Vornamen + Adelsname" };
+    }
+    return { name: `${first} ${pick(region.family)}`, construction: "Vorname + Familienname" };
+  }
+  if (variant === "horasreich") {
+    let second = pick(region[gender]);
+    if (second === first) second = pick(region[gender]);
+    if (status === "simple") return { name: `${first} ${second} ${pick(region.family)}`, construction: "zwei Vornamen + Familienname" };
+    if (status === "respected") return { name: `${first} ${second} ${pick(region.prefixes)} ${pick(region.family)}`, construction: "zwei Vornamen + bürgerliches Namensprädikat" };
+    return { name: `${first} ${second} ${pick(region.noble)}`, construction: "zwei Vornamen + gehobener Familienname" };
+  }
+  return { name: first, construction: "Vorname" };
+};
+
+const buildProfile = (species, variantKey, status) => {
+  const appearance = `${pick(profileData.age)}, ${pick(profileData.build[species])}; ${pick(profileData.clothing[status])}.`;
+  const trait = pick(profileData.traits);
+  const contextual = species === "human"
+    ? profileData.regionalSpecials[variantKey] || []
+    : profileData.speciesSpecials[species] || [];
+  const special = pick([...profileData.specials, ...contextual, ...contextual]);
+  return { appearance, trait, special };
 };
 
 const buildSpeciesName = (species, variantKey, gender, status) => {
@@ -168,10 +212,14 @@ const generate = () => {
   const gender = selectedGender();
   const status = statusSelect.value;
   const result = buildSpeciesName(speciesKey, variantKey, gender, status);
+  const profile = buildProfile(speciesKey, variantKey, status);
   generatedName.textContent = result.name;
   const genderLabel = speciesKey === "achaz" ? "geschlechtsunabhängig" : gender === "female" ? "weiblich" : "männlich";
   generatedMeta.textContent = `${species.label} · ${variant.label} · ${genderLabel} · ${statusLabels[status]}`;
   constructionNote.textContent = result.construction;
+  profileAppearance.textContent = profile.appearance;
+  profileTrait.textContent = profile.trait;
+  profileSpecial.textContent = profile.special;
   updateRule();
   requestAnimationFrame(fitGeneratedName);
   generatedName.animate([{ opacity: .2, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 260, easing: "ease-out" });
@@ -189,11 +237,12 @@ document.querySelector("#generate").addEventListener("click", generate);
 document.querySelector("#copy-name").addEventListener("click", async () => {
   const name = generatedName.textContent;
   if (!name || name === "–") return;
+  const text = `${name}\nAussehen: ${profileAppearance.textContent}\nEigenart: ${profileTrait.textContent}\nBesonderheit: ${profileSpecial.textContent}`;
   try {
-    await navigator.clipboard.writeText(name);
-    showToast("Name kopiert.");
+    await navigator.clipboard.writeText(text);
+    showToast("Name und Profil kopiert.");
   } catch {
-    window.prompt("Diesen Namen kopieren:", name);
+    window.prompt("Name und Profil kopieren:", text);
   }
 });
 
