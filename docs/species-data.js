@@ -35,7 +35,17 @@ const dwarfMale = ["Adamantosch", "Agam", "Albrax", "Ambrosch", "Andrasch", "Ang
 window.AVENTURIAN_SPECIES_DATA = {
   human: {
     label: "Mensch", variantLabel: "Region", variants: {
+      al_anfa_tiefer_sueden: { label: "Al'Anfa & Tiefer Süden", rule: "brabaci" },
       andergast: { label: "Andergast", rule: "andergast" },
+      aranien: { label: "Aranien", rule: "aranien" },
+      bornland: { label: "Bornland", rule: "regional" },
+      ferkina: { label: "Ferkina", rule: "ferkina" },
+      fjarninger: { label: "Fjarninger", rule: "fjarninger" },
+      freie_staedte_norden: { label: "Freie Städte des Nordens & Dominium Donnerbach", rule: "regional" },
+      gjalsker: { label: "Gjalsker", rule: "gjalsker" },
+      hoher_norden: { label: "Hoher Norden", rule: "regional" },
+      kemi: { label: "Kemi", rule: "kemi" },
+      maraskan: { label: "Maraskan", rule: "maraskan" },
       mittelreich_albernia: { label: "Mittelreich · Albernia", rule: "mittelreich" },
       mittelreich_almada: { label: "Mittelreich · Almada", rule: "mittelreich" },
       mittelreich_garetien: { label: "Mittelreich · Garetien", rule: "mittelreich" },
@@ -50,10 +60,23 @@ window.AVENTURIAN_SPECIES_DATA = {
       mittelreich_warunk: { label: "Mittelreich · Warunk", rule: "mittelreich" },
       mittelreich_weiden: { label: "Mittelreich · Weiden", rule: "mittelreich" },
       mittelreich_windhag: { label: "Mittelreich · Windhag", rule: "mittelreich" },
+      nivesen: { label: "Nivesen", rule: "tribal" },
+      norbarden: { label: "Norbarden", rule: "norbarden" },
+      nostria: { label: "Nostria", rule: "regional" },
       horasreich: { label: "Horasreich", rule: "horasreich" },
       kalifat: { label: "Kalifat · Novadis", rule: "kalifat" },
+      schattenlande: { label: "Schattenlande", rule: "regional" },
+      selem: { label: "Selem", rule: "regional" },
+      suedmeer_bukanier: { label: "Südmeer & Bukanier", rule: "pirate" },
+      svellttal: { label: "Svellttal", rule: "svellttal" },
+      thalusien: { label: "Thalusien", rule: "thalusien" },
       thorwal: { label: "Thorwal", rule: "thorwal" },
-      tulamidenlande: { label: "Tulamidenlande", rule: "tulamiden" }
+      trollzacker: { label: "Trollzacker", rule: "tribal" },
+      tulamidenlande: { label: "Tulamidenlande", rule: "tulamiden" },
+      utulu: { label: "Utulu", rule: "tribal" },
+      waldmenschen: { label: "Waldmenschenstämme", rule: "tribal" },
+      zahori: { label: "Zahori", rule: "tribal" },
+      zyklopeninseln: { label: "Zyklopeninseln", rule: "zyklopen" }
     }
   },
   achaz: {

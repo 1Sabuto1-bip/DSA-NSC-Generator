@@ -57,6 +57,76 @@ const speciesRules = {
       simple: "Novadis verwenden für Söhne gewöhnlich „ben“ statt „ibn“. Töchter führen meist einen Vaternamen; bei einem nicht rastullahgläubigen Vater kann der Muttername mit „bint el'“ erscheinen.",
       respected: "Zu Abstammungsnamen können Lehrmeister- oder seltene Familiennamen treten.",
       upper: "Ein Ehrenname hebt Rang, Ruf oder eine besondere Eigenschaft hervor und ergänzt die novadische Abstammungsform."
+    },
+    brabaci: {
+      simple: "Im tiefen Süden sind ein oder mehrere klangvolle Vornamen üblich. Unfreie Menschen führen häufig keinen Familiennamen.",
+      respected: "Freie führen einen Familiennamen; mehrere Vornamen und neu angenommene Namen sind verbreitet.",
+      upper: "Macht und Wohlstand zeigen sich in langen Namen, Prädikaten und den Namen bedeutender Grandenfamilien."
+    },
+    aranien: {
+      simple: "Aranische Männer führen meist den Vater mit „ibn“, Frauen die Mutter mit „saba“ oder einer Endung wie -sunni beziehungsweise -sunya an.",
+      respected: "Neben dem Elternnamen kommen alte Sippennamen und vom Herkunftsort abgeleitete Familiennamen vor.",
+      upper: "Adelsnamen werden je nach Familientradition mit „von“, „ay“ oder „ai“ verbunden."
+    },
+    regional: {
+      simple: "Die einfache Namensform verwendet einen regionalen Vornamen mit Herkunft, Ruf- oder Familiennamen.",
+      respected: "Angesehene Personen führen gewöhnlich einen festen Familiennamen oder einen bekannten Beinamen.",
+      upper: "Für die Oberschicht wird ein regionaler Haus-, Adels- oder Würdenname verwendet."
+    },
+    ferkina: {
+      simple: "Ferkina führen einen Vaternamen: Männer mit „iban“, Frauen mit „sabu“.",
+      respected: "Zusätzlich wird häufig der Name des Stammes genannt.",
+      upper: "Eine herausgehobene Person verbindet Abstammung, Stammeszugehörigkeit und einen Ehrennamen."
+    },
+    fjarninger: {
+      simple: "Fjarninger kennen keine Familiennamen und führen meist nur ihren Vornamen.",
+      respected: "Ein verdienter Ehrenname beschreibt Tat, Wesen oder besondere Stärke.",
+      upper: "Bedeutende Fjarninger nennen Ehrennamen und die Zugehörigkeit zu ihren Leuten."
+    },
+    gjalsker: {
+      simple: "Männer nennen ihren Vater mit „bren“, Frauen ihre Mutter mit „brai“.",
+      respected: "Zur Abstammung tritt der Name des Haerads beziehungsweise der Sippe.",
+      upper: "Sieger der Kraftspiele dürfen den Ehrentitel „Gon“ vor ihrem Namen führen."
+    },
+    tribal: {
+      simple: "Im Alltag genügt häufig der Vorname oder Rufname.",
+      respected: "Bei einer förmlichen Vorstellung wird die Sippe oder der Stamm ergänzt.",
+      upper: "Eine bedeutende Person führt zusätzlich einen verdienten Ehren- oder Beinamen."
+    },
+    norbarden: {
+      simple: "Norbarden führen zu ihrem Vornamen stets den gemeinsamen Namen ihrer Meschpoke.",
+      respected: "Der Sippenname macht die Zugehörigkeit zur von einer Muhme geführten Gemeinschaft sichtbar.",
+      upper: "Auch einflussreiche Norbarden behalten die Sippenform bei; ein zusätzlicher Beiname kann den Ruf hervorheben."
+    },
+    kemi: {
+      simple: "In Kemi wird der Heimatort häufig mit „Ni“ an den Vornamen angehängt.",
+      respected: "Einige alte Familien führen feste Namen; daneben bestehen südaventurische Mischformen.",
+      upper: "Kemi kennt keinen klassischen Adel. Einflussreiche Personen tragen alte Familien- oder Herkunftsnamen."
+    },
+    maraskan: {
+      simple: "Maraskaner nennen meist den Herkunftsort anstelle eines Familiennamens.",
+      respected: "Ein wandelbarer Beiname kann Herkunft, Eigenart oder eine Lebensgeschichte beschreiben.",
+      upper: "Auch angesehene Maraskaner bevorzugen Herkunft und sprechende Beinamen gegenüber klassischen Adelstiteln."
+    },
+    pirate: {
+      simple: "Im Südmeer genügt oft ein einzelner Vorname oder Rufname.",
+      respected: "Piraten und Bukanier führen markante Beinamen, die Aussehen, Schiff oder Taten beschreiben.",
+      upper: "Berüchtigte Kapitäninnen und Kapitäne schmücken sich mit einem eindrucksvollen Titel."
+    },
+    svellttal: {
+      simple: "Im Svellttal werden Namen häufig auf ein oder zwei Silben verkürzt.",
+      respected: "Ein auffälliger Beiname wird dem kurzen Rufnamen vorangestellt.",
+      upper: "Bekannte Persönlichkeiten führen besonders einprägsame, oft aus Taten oder Aussehen gebildete Beinamen."
+    },
+    thalusien: {
+      simple: "Thalusier verwenden Vaternamen mit „ibn“ oder „ben“ und Mutternamen mit „saba“ oder einer entsprechenden Endung.",
+      respected: "Ein Familien- oder Herkunftsname kann die Abstammungsform ergänzen.",
+      upper: "Tulamidische Ehrennamen und Titel sind bei Wohlhabenden und Mächtigen verbreitet."
+    },
+    zyklopen: {
+      simple: "Zyklopäer führen einen Familiennamen oder nennen ihren Heimatort mit einem vorangestellten „a“.",
+      respected: "Gelehrte und Akademieabsolventen verbinden Herkunftsnamen mit „dyll“ oder „dylli“.",
+      upper: "Der Adel verwendet aufwendige Vornamen und apostrophierte Haus- oder Ortsnamen."
     }
   },
   achaz: "Achaznamen unterscheiden nicht nach Geschlecht. Ein zusätzlicher Herkunfts- oder Gelegenamen kann genannt werden, ist aber kein Familienname.",
@@ -80,6 +150,7 @@ const randomIndex = (length) => {
 };
 const pick = (entries) => entries[randomIndex(entries.length)];
 const possessive = (name) => /[sxzß]$/i.test(name) ? name : `${name}s`;
+const prefixedNoble = (name) => /^(vom|von |zu |zur |de |di |da |d'|ay |ai |dyll|a')/i.test(name) ? name : `von ${name}`;
 
 const buildHumanName = (variant, gender, status) => {
   const region = humanData[variant];
@@ -145,6 +216,110 @@ const buildHumanName = (variant, gender, status) => {
       return { name: `${first} ${ancestry} ${pick(region.families)}`, construction: "Vorname + Abstammung + seltener Familienname" };
     }
     return { name: `${first} ${pick(region.honorifics)} ${ancestry}`, construction: "Vorname + Ehrenname + Abstammung" };
+  }
+  if (region.style === "brabaci") {
+    let second = pick(region[gender]);
+    if (second === first) second = pick(region[gender]);
+    if (status === "simple") return { name: randomIndex(2) ? first : `${first} ${second}`, construction: "ein oder zwei Vornamen" };
+    if (status === "respected") return { name: `${first} ${second} ${pick(region.family)}`, construction: "zwei Vornamen + Familienname" };
+    return { name: `${first} ${second} ${pick(region.prefixes)} ${pick(region.noble)}`, construction: "Vornamen + Prädikat + Grandenname" };
+  }
+  if (region.style === "aranien") {
+    const parent = pick(region[gender === "female" ? "female" : "male"]);
+    const ancestry = gender === "male"
+      ? `ibn ${parent}`
+      : randomIndex(2) ? `saba ${parent}` : `${parent}${randomIndex(2) ? "sunni" : "sunya"}`;
+    if (status === "simple") return { name: `${first} ${ancestry}`, construction: "Vorname + Elternname" };
+    if (status === "respected") return { name: `${first} ${ancestry} ${pick(region.family)}`, construction: "Vorname + Elternname + Sippenname" };
+    return { name: `${first} ${ancestry} ${pick(region.predicates)} ${pick(region.noble)}`, construction: "Vorname + Elternname + Adelsname" };
+  }
+  if (region.style === "ferkina") {
+    const parent = pick(region.male);
+    const ancestry = `${gender === "female" ? "sabu" : "iban"} ${parent}`;
+    if (status === "simple") return { name: `${first} ${ancestry}`, construction: "Vorname + Vatername" };
+    if (status === "respected") return { name: `${first} ${ancestry}, ${pick(region.clans)}`, construction: "Vorname + Vatername + Stamm" };
+    return { name: `${first} ${pick(region.epithets)} ${ancestry}, ${pick(region.clans)}`, construction: "Vorname + Ehrenname + Vatername + Stamm" };
+  }
+  if (region.style === "fjarninger") {
+    if (status === "simple") return { name: first, construction: "Vorname" };
+    const epithet = pick(region.epithets);
+    if (status === "respected") return { name: `${first} ${epithet}`, construction: "Vorname + Ehrenname" };
+    return { name: `${first} ${epithet} von den ${pick(region.clans)}`, construction: "Vorname + Ehrenname + Stammeszugehörigkeit" };
+  }
+  if (region.style === "gjalsker") {
+    const parent = pick(region[gender]);
+    const ancestry = `${gender === "female" ? "brai" : "bren"} ${parent}`;
+    if (status === "simple") return { name: `${first} ${ancestry}`, construction: "Vorname + Elternname" };
+    const clan = `vom Haerad der ${pick(region.clans)}`;
+    if (status === "respected") return { name: `${first} ${ancestry} ${clan}`, construction: "Vorname + Elternname + Sippe" };
+    return { name: `Gon ${first} ${ancestry} ${clan}`, construction: "Ehrentitel + Vorname + Elternname + Sippe" };
+  }
+  if (region.style === "nivesen") {
+    if (status === "simple") return { name: first, construction: "Vorname" };
+    const clan = `von den ${pick(region.clans)}`;
+    if (status === "respected") return { name: `${first} ${clan}`, construction: "Vorname + Sippe oder Stamm" };
+    return { name: `${first} „${pick(region.epithets)}“ ${clan}`, construction: "Vorname + Ehrenname + Stamm" };
+  }
+  if (region.style === "norbarden") {
+    const family = pick(region.family);
+    if (status === "simple") return { name: `${first} ${family}`, construction: "Vorname + Meschpokenname" };
+    if (status === "respected") return { name: `${first} ${family}`, construction: "Vorname + Meschpokenname" };
+    return { name: `${first} „${pick(region.epithets)}“ ${family}`, construction: "Vorname + Beiname + Meschpokenname" };
+  }
+  if (region.style === "kemi") {
+    if (status === "simple") return { name: `${first} Ni ${pick(region.origins)}`, construction: "Vorname + Herkunftsort" };
+    if (status === "respected") return { name: `${first} ${pick(region.family)}`, construction: "Vorname + alter Familienname" };
+    return { name: `${first} ${pick(region.family)} Ni ${pick(region.origins)}`, construction: "Vorname + Familie + Herkunftsort" };
+  }
+  if (region.style === "maraskan") {
+    if (status === "simple") return { name: `${first} von ${pick(region.origins)}`, construction: "Vorname + Herkunftsort" };
+    const epithet = pick(region[gender === "female" ? "femaleEpithets" : "maleEpithets"]);
+    if (status === "respected") return { name: `${first} ${epithet}`, construction: "Vorname + sprechender Beiname" };
+    return { name: `${first} von ${pick(region.origins)}, ${epithet}`, construction: "Vorname + Herkunft + Beiname" };
+  }
+  if (region.style === "pirate") {
+    if (status === "simple") return { name: first, construction: "Rufname" };
+    const epithet = `${pick(region.epithetStarts)}${first}`;
+    if (status === "respected") return { name: epithet, construction: "Piratenbeiname + Rufname" };
+    return { name: `${epithet}, ${pick(region.titles)}`, construction: "Piratenbeiname + Titel" };
+  }
+  if (region.style === "svellttal") {
+    if (status === "simple") return { name: first, construction: "kurzer Rufname" };
+    const byname = `${pick(region.epithetStarts)}${first}`;
+    return { name: status === "upper" ? `${byname} vom Svellt` : byname, construction: "Beiname + Rufname" };
+  }
+  if (region.style === "thalusien") {
+    const parent = pick(region.male);
+    const ancestry = gender === "female"
+      ? randomIndex(2) ? `saba ${parent}` : `${parent}${randomIndex(2) ? "sunni" : "sunya"}`
+      : `${randomIndex(2) ? "ibn" : "ben"} ${parent}`;
+    if (status === "simple") return { name: `${first} ${ancestry}`, construction: "Vorname + Elternname" };
+    if (status === "respected") return { name: `${first} ${ancestry} ${pick(region.family)}`, construction: "Vorname + Elternname + Familienname" };
+    return { name: `${first} ${pick(region.honorifics)} ${ancestry}`, construction: "Vorname + Ehrenname + Elternname" };
+  }
+  if (region.style === "tribal") {
+    if (status === "simple") return { name: first, construction: "Vorname oder Rufname" };
+    const clan = pick(region.clans);
+    if (status === "respected") return { name: `${first} vom Stamm der ${clan}`, construction: "Vorname + Stamm oder Sippe" };
+    return { name: `${first} „${pick(region.epithets)}“ vom Stamm der ${clan}`, construction: "Vorname + Ehrenname + Stamm" };
+  }
+  if (region.style === "zyklopen") {
+    if (status === "simple") return randomIndex(2)
+      ? { name: `${first} ${pick(region.family)}`, construction: "Vorname + Familienname" }
+      : { name: `${first} a ${pick(region.origins)}`, construction: "Vorname + Heimatort" };
+    const origin = pick(status === "upper" ? region.noble : region.origins);
+    const predicate = /^[aeiouäöüy]/i.test(origin) ? "dyll" : "dylli";
+    if (status === "respected") return { name: `${first} ${predicate} ${origin}`, construction: "Vorname + gelehrter Herkunftsname" };
+    return { name: `${first} A'${origin} ${predicate} ${pick(region.origins)}`, construction: "Vorname + Adelsname + Herkunft" };
+  }
+  if (region.style === "regional") {
+    if (status === "simple" && region.origins?.length && randomIndex(2) === 0) return { name: `${first} ${pick(region.origins)}`, construction: "Vorname + Herkunftsbezeichnung" };
+    if (status === "upper" && region.noble?.length) {
+      const second = region.doubleFirst ? ` ${pick(region[gender])}` : "";
+      return { name: `${first}${second} ${prefixedNoble(pick(region.noble))}`, construction: `${region.doubleFirst ? "zwei Vornamen" : "Vorname"} + gehobener Name` };
+    }
+    if (region.epithets?.length && status === "respected" && randomIndex(3) === 0) return { name: `${first} ${pick(region.epithets)}`, construction: "Vorname + Beiname" };
+    return { name: `${first} ${pick(region.family)}`, construction: "Vorname + Familienname" };
   }
   return { name: first, construction: "Vorname" };
 };

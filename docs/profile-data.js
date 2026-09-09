@@ -55,7 +55,22 @@ window.AVENTURIAN_PROFILE_DATA = {
     horasreich: ["Besitzt eine Einladung zu einem Vinsalter Salon.", "Erkennt mehrere seltene Weine am Geruch.", "Kennt hinter den Kulissen eines Theaters erstaunlich viele Leute."],
     thorwal: ["Trägt ein Stück geschnitztes Walbein als Glücksbringer.", "Kennt die Strophen einer fast vergessenen Saga.", "Kann ein Schiff schon am Klang seiner Takelage erkennen."],
     tulamiden: ["Kennt die Bedeutung zahlreicher tulamidischer Ehrennamen.", "Trägt ein Fläschchen mit stark duftendem Rosenöl.", "Kann eine Geschichte über die Kophtanim erzählen."],
-    kalifat: ["Kennt mehrere Rastplätze und Wasserstellen in der Khôm.", "Trägt ein sorgfältig gepflegtes Tuch gegen Wüstensand.", "Kann die Abstammung der eigenen Sippe über viele Generationen aufzählen."]
+    kalifat: ["Kennt mehrere Rastplätze und Wasserstellen in der Khôm.", "Trägt ein sorgfältig gepflegtes Tuch gegen Wüstensand.", "Kann die Abstammung der eigenen Sippe über viele Generationen aufzählen."],
+    brabaci: ["Trägt ein fein gearbeitetes Schmuckstück aus dem tiefen Süden.", "Kennt die Gerüche und Stimmen eines großen Südhafens.", "Kann mehrere exotische Gewürze sicher unterscheiden."],
+    aranien: ["Trägt ein kleines Amulett mit einem Rosenmotiv.", "Kennt eine verwickelte Geschichte aus Zorgan.", "Kann Herkunft und Rang aranischer Stoffe am Muster erkennen."],
+    regional: ["Kennt einen wenig benutzten Weg durch die eigene Heimat.", "Trägt ein kleines Andenken an den Heimatort.", "Wechselt bei Aufregung in den regionalen Dialekt."],
+    ferkina: ["Kann einen Gebirgspfad allein an den Felsen erkennen.", "Trägt eine Trophäe der eigenen Sippe.", "Kennt eine alte Erzählung über die Khoram-Berge."],
+    fjarninger: ["Kann heraufziehenden Schneefall am Wind riechen.", "Trägt die Erinnerung an eine bestandene Jagd sichtbar am Gürtel.", "Kennt einen geschützten Lagerplatz im ewigen Eis."],
+    gjalsker: ["Trägt ein Zeichen des eigenen Haerads.", "Kennt die Bedeutung zahlreicher Tierlaute.", "Hat schon an den traditionellen Kraftspielen teilgenommen."],
+    nivesen: ["Kann einzelne Karen an ihrer Fährte unterscheiden.", "Kennt die Zeichen eines nahenden Steppensturms.", "Trägt einen kleinen Wolfsanhänger bei sich."],
+    norbarden: ["Kann Waren erstaunlich schnell im Kopf verrechnen.", "Kennt eine Meschpoke auf fast jeder großen Nordlandroute.", "Führt einen sorgsam gepflegten Reiseplan mit sich."],
+    kemi: ["Kennt ein altes Lied vom Szintofluss.", "Trägt ein Familienzeichen in altkemi-Stil.", "Kann mehrere südliche Heilkräuter am Geruch unterscheiden."],
+    maraskan: ["Sieht selbst in einem hässlichen Gegenstand noch einen schönen Aspekt.", "Kennt eine überraschende Antwort auf eine philosophische Frage.", "Trägt einen kleinen Diskus mit eingeritztem Muster."],
+    pirate: ["Kennt die Untiefen vor einer berüchtigten Insel.", "Trägt eine Seekarte mit einem verdächtigen roten Kreuz.", "Kann ein Schiff schon am Horizont am Segelriss erkennen."],
+    svellttal: ["Kennt einen sicheren Übergang über den Svellt.", "Hat mit Orks gehandelt und spricht ungern darüber.", "Trägt eine Münze aus Lowangen als Glücksbringer."],
+    thalusien: ["Kennt die Händlerzeichen mehrerer Mhanadi-Häuser.", "Trägt einen duftenden Beutel mit thalusischen Kräutern.", "Kann eine alte Geschichte über die Echsenreiche erzählen."],
+    tribal: ["Trägt ein kleines Zeichen der eigenen Sippe.", "Kennt einen nur mündlich überlieferten Weg durch die Heimat.", "Kann die Spuren eines heiligen Tieres deuten."],
+    zyklopen: ["Kennt eine verwickelte Sage über Efferd und die Zyklopen.", "Trägt eine fein gearbeitete Münze aus Rethis.", "Kann die Herkunft eines Weines von den Inseln am Duft erkennen."]
   },
   speciesSpecials: {
     achaz: ["Erinnert sich genau an den Tag der sechsten Häutung.", "Trägt eine Schuppe mit eingeritzten Zeichen bei sich."],
